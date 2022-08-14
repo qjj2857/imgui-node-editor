@@ -928,17 +928,17 @@ static void DrawScale(const ImVec2& from, const ImVec2& to, float majorUnit, flo
     auto majorSize = 10.0f;
     auto labelDistance = 8.0f;
 
-    drawList->AddLine(from, to, IM_COL32(255, 255, 255, 255));
+    drawList->AddLine(from, to, IM_COL32(255, 0, 0, 255));        //×ø±êÖá
 
     auto p = from;
     for (auto d = 0.0f; d <= distance; d += minorUnit, p += direction * minorUnit)
-        drawList->AddLine(p - normal * minorSize, p + normal * minorSize, IM_COL32(255, 255, 255, 255));
+        drawList->AddLine(p - normal * minorSize, p + normal * minorSize, IM_COL32(0, 255, 0, 255));       //small dash
 
     for (auto d = 0.0f; d <= distance + majorUnit; d += majorUnit)
     {
         p = from + direction * d;
 
-        drawList->AddLine(p - normal * majorSize, p + normal * majorSize, IM_COL32(255, 255, 255, 255));
+        drawList->AddLine(p - normal * majorSize, p + normal * majorSize, IM_COL32(0, 0, 255, 255));       //large dash
 
         if (d == 0.0f)
             continue;
@@ -1512,7 +1512,7 @@ void Application_Frame()
 
 
                 if (viewRect.Max.x > 0.0f)
-                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Max.x, 0.0f), 100.0f, 10.0f, 0.6f);
+                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Max.x, 0.0f), 160.0f, 16.0f, 0.6f);
                 if (viewRect.Min.x < 0.0f)
                     DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Min.x, 0.0f), 100.0f, 10.0f, 0.6f, -1.0f);
                 if (viewRect.Max.y > 0.0f)
