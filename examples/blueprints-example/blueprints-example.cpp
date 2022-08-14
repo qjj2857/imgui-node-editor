@@ -878,7 +878,7 @@ void ShowLeftPane(float paneWidth)
     if (ed::HasSelectionChanged())
         ++changeCount;
 
-    {//qjj
+    {//#qjj
         ImGui::BeginHorizontal("aaaaaaaaaaaaaaaaa", ImVec2(paneWidth, 0));
         ImGui::Text("ttttttttttttttt", changeCount, changeCount > 1 ? "s" : "");
         ImGui::Spring();
@@ -913,7 +913,7 @@ void ShowLeftPane(float paneWidth)
 
 
 
-
+// #qjj
 static void DrawScale(const ImVec2& from, const ImVec2& to, float majorUnit, float minorUnit, float labelAlignment, float sign = 1.0f)
 {
     auto drawList = ImGui::GetWindowDrawList();
@@ -1498,7 +1498,7 @@ void Application_Frame()
        
 
 
-        {//qjj
+        {//#qjj
 
             ImRect viewRect;
             viewRect.Min = ImGui::GetItemRectMin();
