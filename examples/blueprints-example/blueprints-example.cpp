@@ -892,6 +892,8 @@ void ShowLeftPane(float paneWidth)
 
 
 
+
+
     }
 
 
@@ -1496,11 +1498,18 @@ void Application_Frame()
        
 
 
-        {
+        {//qjj
 
             ImRect viewRect;
             viewRect.Min = ImGui::GetItemRectMin();
             viewRect.Max = ImGui::GetItemRectMax();
+
+            viewRect.Min.x = -1024 * 16;// 0;
+            viewRect.Min.y = -1024 * 16;// 0;
+
+            viewRect.Max.x = 1024 * 16;
+            viewRect.Max.y = 1024 * 16;
+
 
                 if (viewRect.Max.x > 0.0f)
                     DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Max.x, 0.0f), 100.0f, 10.0f, 0.6f);
