@@ -913,7 +913,7 @@ void ShowLeftPane(float paneWidth)
 
 
 
-// #qjj
+// #qjj  DrawScale
 static void DrawScale(const ImVec2& from, const ImVec2& to, float majorUnit, float minorUnit, float labelAlignment, float sign = 1.0f)
 {
     auto drawList = ImGui::GetWindowDrawList();
@@ -944,7 +944,7 @@ static void DrawScale(const ImVec2& from, const ImVec2& to, float majorUnit, flo
             continue;
 
         char label[16];
-        snprintf(label, 15, "%g", d * sign);
+        snprintf(label, 15, "%g", d * sign / 32);
         auto labelSize = ImGui::CalcTextSize(label);
 
         auto labelPosition = p + ImVec2(fabsf(normal.x), fabsf(normal.y)) * labelDistance;
@@ -954,6 +954,10 @@ static void DrawScale(const ImVec2& from, const ImVec2& to, float majorUnit, flo
 
         drawList->AddText(labelPosition, IM_COL32(255, 255, 255, 255), label);
     }
+
+    drawList->AddLine(ImVec2(64 * 32, 0 * 32), ImVec2(0 * 32, 128 * 32), IM_COL32(255, 128, 128, 255));
+    drawList->AddLine(ImVec2(64 * 32, 0 * 32), ImVec2(128 * 32, 128 * 32), IM_COL32(255, 128, 128, 255));
+    drawList->AddLine(ImVec2(0 * 32, 128 * 32), ImVec2(128 * 32, 128 * 32), IM_COL32(255, 128, 128, 255));
 }
 
 
@@ -1498,27 +1502,27 @@ void Application_Frame()
        
 
 
-        {//#qjj
+        {//#qjj  绘制坐标轴调用
 
             ImRect viewRect;
             viewRect.Min = ImGui::GetItemRectMin();
             viewRect.Max = ImGui::GetItemRectMax();
 
-            viewRect.Min.x = -1024 * 16;// 0;
-            viewRect.Min.y = -1024 * 16;// 0;
+            viewRect.Min.x = -1080 * 16;// 0;
+            viewRect.Min.y = -1080 * 16;// 0;
 
-            viewRect.Max.x = 1024 * 16;
-            viewRect.Max.y = 1024 * 16;
+            viewRect.Max.x = 1080 * 16;
+            viewRect.Max.y = 1080 * 16;
 
 
                 if (viewRect.Max.x > 0.0f)
-                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Max.x, 0.0f), 160.0f, 16.0f, 0.6f);
+                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Max.x, 0.0f), 320.0f, 32.0f, 0.6f);
                 if (viewRect.Min.x < 0.0f)
-                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Min.x, 0.0f), 100.0f, 10.0f, 0.6f, -1.0f);
+                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(viewRect.Min.x, 0.0f), 320.0f, 32.0f, 0.6f, -1.0f);
                 if (viewRect.Max.y > 0.0f)
-                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(0.0f, viewRect.Max.y), 100.0f, 10.0f, 0.6f);
+                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(0.0f, viewRect.Max.y), 320.0f, 32.0f, 0.6f);
                 if (viewRect.Min.y < 0.0f)
-                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(0.0f, viewRect.Min.y), 100.0f, 10.0f, 0.6f, -1.0f);
+                    DrawScale(ImVec2(0.0f, 0.0f), ImVec2(0.0f, viewRect.Min.y), 320.0f, 32.0f, 0.6f, -1.0f);
 
 
         }
